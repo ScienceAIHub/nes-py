@@ -1,0 +1,72 @@
+name: CI
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python-version: ["3.11", "3.12"]
+
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+    
+    - name: Install system dependencies (Ubuntu)
+      if: runner.os == 'Linux'
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y \
+          libsdl-image1.2-dev \
+          libsdl-mixer1.2-dev \
+          libsdl-ttf2.0-dev \
+          libsmpeg-dev \
+          libsdl1.2-dev \
+          libportmidi-dev \
+          libswscale-dev \
+          libavformat-dev \
+          libavcodec-dev \
+          libtiff5-dev \
+          libx11-6 \
+          libx11-dev \
+          fluid-soundfont-gm \
+          timgm6mb-soundfont \
+          xfonts-base \
+          xfonts-100dpi \
+          xfonts-75dpi \
+          xfonts-cyrillic \
+          fontconfig \
+          fonts-freefont-ttf \
+          libfreetype6-dev
+
+    - name: Install build tools
+      run: |
+        python -m pip install --upgrade pip
+        pip install scons wheel setuptools
+
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+
+    - name: Build extension
+      run: |
+        python setup.py build_ext --inplace
+
+    - name: Install package
+      run: |
+        pip install -e .
+
+    - name: Run tests
+      run: |
+        python -m pytest tests/ -v

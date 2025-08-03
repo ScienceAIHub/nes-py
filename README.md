@@ -12,8 +12,8 @@
 [![Format][pypi-format]][pypi-home]
 [![License][pypi-license]](LICENSE)
 
-[build-status]: https://app.travis-ci.com/Kautenja/nes-py.svg?branch=master
-[ci-server]: https://app.travis-ci.com/Kautenja/nes-py
+[build-status]: https://github.com/ScienceAIHub/nes-py/workflows/CI/badge.svg
+[ci-server]: https://github.com/ScienceAIHub/nes-py/actions
 [pypi-version]: https://badge.fury.io/py/nes-py.svg
 [pypi-license]: https://img.shields.io/pypi/l/nes-py.svg
 [pypi-status]: https://img.shields.io/pypi/status/nes-py.svg
@@ -104,6 +104,11 @@ The preferred installation of `nes-py` is from `pip`:
 ```shell
 pip install nes-py
 ```
+
+## Requirements
+
+- Python 3.11 or 3.12
+- Supported platforms: Linux, Windows, macOS (including Apple Silicon)
 
 ## Debian
 

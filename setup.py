@@ -26,7 +26,7 @@ SOURCES = glob('nes_py/nes/src/*.cpp') + glob('nes_py/nes/src/mappers/*.cpp')
 # headers with sdist
 INCLUDE_DIRS = ['nes_py/nes/include']
 # Build arguments to pass to the compiler
-EXTRA_COMPILE_ARGS = ['-std=c++1y', '-pipe', '-O3']
+EXTRA_COMPILE_ARGS = ['-std=c++14', '-pipe', '-O3']
 # The official extension using the name, source, headers, and build args
 LIB_NES_ENV = Extension(LIB_NAME,
     sources=SOURCES,
@@ -52,11 +52,8 @@ setup(
         'Operating System :: Microsoft :: Windows',
         'Programming Language :: C++',
         'Programming Language :: Python :: 3 :: Only',
-        'Programming Language :: Python :: 3.5',
-        'Programming Language :: Python :: 3.6',
-        'Programming Language :: Python :: 3.7',
-        'Programming Language :: Python :: 3.8',
-        'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.11',
+        'Programming Language :: Python :: 3.12',
         'Topic :: Games/Entertainment',
         'Topic :: Software Development :: Libraries :: Python Modules',
         'Topic :: System :: Emulators',
@@ -69,11 +66,12 @@ setup(
     ext_modules=[LIB_NES_ENV],
     zip_safe=False,
     install_requires=[
-        'gym>=0.17.2',
-        'numpy>=1.18.5',
-        'pyglet<=1.5.21,>=1.4.0',
+        'gymnasium>=0.28.0',
+        'numpy>=1.21.0',
+        'pyglet>=1.4.0,<=2.0.10',
         'tqdm>=4.48.2',
     ],
+    python_requires='>=3.11',
     entry_points={
         'console_scripts': [
             'nes_py = nes_py.app.cli:main',
