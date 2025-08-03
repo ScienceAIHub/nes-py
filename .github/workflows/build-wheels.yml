@@ -23,7 +23,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Build wheels
-        uses: pypa/cibuildwheel@v2.16.2
+        uses: pypa/cibuildwheel@v2.21.3
         env:
           CIBW_BUILD: cp311-* cp312-*
           CIBW_SKIP: "*-win32 *-manylinux_i686"
@@ -37,6 +37,8 @@ jobs:
             pip install scons numpy>=1.21.0
           CIBW_BEFORE_BUILD: pip install scons numpy>=1.21.0
           CIBW_TEST_COMMAND: python -c "import nes_py; print('Import successful'); from nes_py import NESEnv; print('NESEnv import successful')"
+        with:
+          output-dir: wheelhouse
 
       - uses: actions/upload-artifact@v4
         with:
