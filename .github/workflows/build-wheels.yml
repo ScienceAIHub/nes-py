@@ -1,7 +1,10 @@
 name: Build and publish wheels
 
 on:
-  push:
+       - uses: actions/upload-artifact@v4
+        with:
+          name: wheels-${{ matrix.os }}
+          path: ./wheelhouse/*.whlh:
     branches: [ master, main ]
     tags:
       - 'v*'
@@ -38,9 +41,9 @@ jobs:
           CIBW_BEFORE_BUILD: pip install scons numpy>=1.21.0
           CIBW_TEST_COMMAND: python -c "import nes_py; print('Import successful'); from nes_py import NESEnv; print('NESEnv import successful')"
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
-          name: wheels
+          name: wheels-${{ matrix.os }}
           path: ./wheelhouse/*.whl
 
   build_sdist:
@@ -62,9 +65,9 @@ jobs:
       - name: Build sdist
         run: python -m build --sdist
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
-          name: wheels
+          name: sdist
           path: dist/*.tar.gz
 
   publish:
@@ -72,10 +75,10 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event_name == 'release' && github.event.action == 'published'
     steps:
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
-          name: wheels
           path: dist
+          merge-multiple: true
 
       - name: Upload wheels to GitHub Release
         uses: softprops/action-gh-release@v1
