@@ -54,7 +54,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
+          python-version: '3.12'
 
       - name: Install build dependencies
         run: |
@@ -72,7 +72,7 @@ jobs:
   publish:
     needs: [build_wheels, build_sdist]
     runs-on: ubuntu-latest
-    if: github.event_name == 'release' && github.event.action == 'published'
+    if: github.ref_type == 'tag' || (github.event_name == 'release' && github.event.action == 'published')
     steps:
       - uses: actions/download-artifact@v4
         with:
@@ -80,7 +80,8 @@ jobs:
           merge-multiple: true
 
       - name: Upload wheels to GitHub Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
+        if: github.ref_type == 'tag'
         with:
-          files: dist/*
-          token: ${{ secrets.GITHUB_TOKEN }}
+          files: |
+            dist/*
