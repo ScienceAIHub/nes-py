@@ -95,13 +95,13 @@ jobs:
             if os.path.exists(rom_path):
               try:
                 rom = ROM(rom_path)
-                print(f'✅ Successfully loaded ROM: {rom_path}')
+                print(f'SUCCESS: Successfully loaded ROM: {rom_path}')
                 print(f'   PRG ROM size: {rom.prg_rom_size} KB')
                 print(f'   CHR ROM size: {rom.chr_rom_size} KB')
                 tested_any = True
                 break
               except Exception as e:
-                print(f'❌ Failed to load {rom_path}: {e}')
+                print(f'FAILED: Failed to load {rom_path}: {e}')
           if not tested_any:
             print('No valid test ROMs found, skipping ROM test')
         else:
