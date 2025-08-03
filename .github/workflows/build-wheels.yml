@@ -1,10 +1,7 @@
 name: Build and publish wheels
 
 on:
-       - uses: actions/upload-artifact@v4
-        with:
-          name: wheels-${{ matrix.os }}
-          path: ./wheelhouse/*.whlh:
+  push:
     branches: [ master, main ]
     tags:
       - 'v*'
