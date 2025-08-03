@@ -14,15 +14,15 @@
 
 [build-status]: https://github.com/ScienceAIHub/nes-py/workflows/CI/badge.svg
 [ci-server]: https://github.com/ScienceAIHub/nes-py/actions
-[pypi-version]: https://badge.fury.io/py/nes-py.svg
-[pypi-license]: https://img.shields.io/pypi/l/nes-py.svg
-[pypi-status]: https://img.shields.io/pypi/status/nes-py.svg
-[pypi-format]: https://img.shields.io/pypi/format/nes-py.svg
-[pypi-home]: https://badge.fury.io/py/nes-py
-[python-version]: https://img.shields.io/pypi/pyversions/nes-py.svg
+[pypi-version]: https://badge.fury.io/py/nes-emulator-py.svg
+[pypi-license]: https://img.shields.io/pypi/l/nes-emulator-py.svg
+[pypi-status]: https://img.shields.io/pypi/status/nes-emulator-py.svg
+[pypi-format]: https://img.shields.io/pypi/format/nes-emulator-py.svg
+[pypi-home]: https://badge.fury.io/py/nes-emulator-py
+[python-version]: https://img.shields.io/pypi/pyversions/nes-emulator-py.svg
 [python-home]: https://python.org
 
-nes-py is an NES emulator and OpenAI Gym interface for MacOS, Linux, and
+nes-emulator-py is an NES emulator and OpenAI Gym interface for MacOS, Linux, and
 Windows based on the [SimpleNES](https://github.com/amhndu/SimpleNES) emulator.
 
 <table align="center">
@@ -99,10 +99,10 @@ Windows based on the [SimpleNES](https://github.com/amhndu/SimpleNES) emulator.
 
 # Installation
 
-The preferred installation of `nes-py` is from `pip`:
+The preferred installation of `nes-emulator-py` is from `pip`:
 
 ```shell
-pip install nes-py
+pip install nes-emulator-py
 ```
 
 ## Requirements
@@ -154,16 +154,16 @@ nes_py -h
 ## Parallelism Caveats
 
 both the `threading` and `multiprocessing` packages are supported by
-`nes-py` with some caveats related to rendering:
+`nes-emulator-py` with some caveats related to rendering:
 
 1.  rendering **is not** supported from instances of `threading.Thread`
 2.  rendering **is** supported from instances of `multiprocessing.Process`,
-    but `nes-py` must be imported within the process that executes the render
+    but `nes-emulator-py` must be imported within the process that executes the render
     call
 
 # Development
 
-To design a custom environment using `nes-py`, introduce new features, or fix
+To design a custom environment using `nes-emulator-py`, introduce new features, or fix
 a bug, please refer to the [Wiki](https://github.com/Kautenja/nes-py/wiki).
 There you will find instructions for:
 

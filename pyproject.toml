@@ -8,7 +8,7 @@ requires = [
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "nes-py"
+name = "nes-emulator-py"
 dynamic = ["version"]
 description = "An NES Emulator and OpenAI Gym interface"
 readme = "README.md"
