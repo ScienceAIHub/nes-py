@@ -64,13 +64,13 @@ skip = "*-win32 *-manylinux_i686"
 archs = ["x86_64"]
 before-build = [
     "yum install -y SDL-devel SDL_image-devel SDL_mixer-devel SDL_ttf-devel smpeg-devel portmidi-devel libavformat-devel libavcodec-devel libswscale-devel libtiff-devel freetype-devel || apt-get update && apt-get install -y libsdl1.2-dev libsdl-image1.2-dev libsdl-mixer1.2-dev libsdl-ttf2.0-dev libsmpeg-dev libportmidi-dev libavformat-dev libavcodec-dev libswscale-dev libtiff5-dev libfreetype6-dev || apk add sdl-dev sdl_image-dev sdl_mixer-dev sdl_ttf-dev smpeg-dev portmidi-dev ffmpeg-dev tiff-dev freetype-dev",
-    "pip install scons"
+    "pip install scons numpy>=1.21.0"
 ]
 
 [tool.cibuildwheel.macos]
 archs = ["x86_64", "arm64"]
-before-build = ["pip install scons"]
+before-build = ["pip install scons numpy>=1.21.0"]
 
 [tool.cibuildwheel.windows]
 archs = ["AMD64"]
-before-build = ["pip install scons"]
+before-build = ["pip install scons numpy>=1.21.0"]

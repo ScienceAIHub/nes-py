@@ -57,12 +57,12 @@ class ROM(object):
     @property
     def prg_rom_size(self):
         """Return the size of the PRG ROM in KB."""
-        return 16 * self.header[4]
+        return 16 * int(self.header[4])
 
     @property
     def chr_rom_size(self):
         """Return the size of the CHR ROM in KB."""
-        return 8 * self.header[5]
+        return 8 * int(self.header[5])
 
     @property
     def flags_6(self):
@@ -77,7 +77,7 @@ class ROM(object):
     @property
     def prg_ram_size(self):
         """Return the size of the PRG RAM in KB."""
-        size = self.header[8]
+        size = int(self.header[8])
         # size becomes 8 when it's zero for compatibility
         if size == 0:
             size = 1
@@ -195,7 +195,7 @@ class ROM(object):
     @property
     def prg_rom_stop(self):
         """The exclusive stopping index of the PRG ROM."""
-        return self.prg_rom_start + self.prg_rom_size * 2**10
+        return self.prg_rom_start + int(self.prg_rom_size) * 1024
 
     @property
     def prg_rom(self):
@@ -213,7 +213,7 @@ class ROM(object):
     @property
     def chr_rom_stop(self):
         """The exclusive stopping index of the CHR ROM."""
-        return self.chr_rom_start + self.chr_rom_size * 2**10
+        return self.chr_rom_start + int(self.chr_rom_size) * 1024
 
     @property
     def chr_rom(self):
