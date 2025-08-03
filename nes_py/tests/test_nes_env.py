@@ -1,6 +1,6 @@
 """Test cases for the NESEnv class."""
 from unittest import TestCase
-import gym
+import gymnasium as gym
 import numpy as np
 from .rom_file_abs_path import rom_file_abs_path
 from nes_py.nes_env import NESEnv

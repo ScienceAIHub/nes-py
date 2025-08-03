@@ -1,5 +1,5 @@
 """A method to play gym environments using human IO inputs."""
-import gym
+import gymnasium as gym
 import time
 from pyglet import clock
 from .._image_viewer import ImageViewer
@@ -22,7 +22,7 @@ def play_human(env: gym.Env, callback=None):
 
     """
     # ensure the observation space is a box of pixels
-    assert isinstance(env.observation_space, gym.spaces.box.Box)
+    assert isinstance(env.observation_space, gym.spaces.Box)
     # ensure the observation space is either B&W pixels or RGB Pixels
     obs_s = env.observation_space
     is_bw = len(obs_s.shape) == 2
