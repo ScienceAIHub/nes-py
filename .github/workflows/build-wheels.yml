@@ -2,8 +2,11 @@ name: Build and publish wheels
 
 on:
   push:
+    branches: [ master, main ]
     tags:
       - 'v*'
+  pull_request:
+    branches: [ master, main ]
   release:
     types: [published]
   workflow_dispatch:
