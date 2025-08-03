@@ -1,5 +1,6 @@
 """Test cases for the NESEnv class."""
 from unittest import TestCase
+import numbers
 import gymnasium as gym
 import numpy as np
 from .rom_file_abs_path import rom_file_abs_path
@@ -83,7 +84,7 @@ class ShouldStepEnv(TestCase):
                 self.assertIsInstance(state, np.ndarray)
             # sample a random action and check it
             action = env.action_space.sample()
-            self.assertIsInstance(action, int)
+            self.assertIsInstance(action, numbers.Integral)
             # take a step and check the outputs
             output = env.step(action)
             self.assertIsInstance(output, tuple)
